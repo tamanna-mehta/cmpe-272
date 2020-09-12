@@ -1,0 +1,9 @@
+---
+- hosts: webserver
+  tasks:
+  - include: /home/cisco/CiscoDevNet/code/dci/assignment1/deploy.yaml 
+    tags: deploy
+
+  - include: /home/cisco/CiscoDevNet/code/dci/assignment1/undeploy.yaml
+    tags: undeploy
+

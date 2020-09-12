@@ -1,0 +1,58 @@
+- block:
+  - name: Add epel-release repo
+    yum:
+      name: epel-release
+      state: present
+      update_cache: yes
+    tags: deploy
+
+  - name: Install nginx
+    yum:
+      name: nginx
+      state: present
+      update_cache: yes
+
+  - name: Copy the nginx config file and restart nginx
+    copy:
+      src: /home/cisco/CiscoDevNet/code/dci/static_site.cfg
+      dest: /etc/nginx/nginx.conf
+    become: yes
+
+  - name: Insert Index Page
+    template:
+      src: /home/cisco/CiscoDevNet/code/dci/assignment1/index.html
+      dest: /usr/share/nginx/html/index.html
+
+  - replace:
+      path: /usr/share/nginx/html/index.html
+      regexp: Hostname
+      replace: '{{ ansible_hostname }}'
+      backup: yes
+
+
+  - name: allow all access to tcp port 8080
+    firewalld:
+      port: 8080/tcp
+      zone: public
+      state: enabled
+      permanent: yes
+      immediate: yes
+
+
+  - firewalld:
+      service: http
+      permanent: yes
+      state: enabled
+      immediate: yes
+  - firewalld:
+      service: https
+      permanent: yes
+      state: enabled
+
+  - name: Start NGiNX
+    service:
+      name: nginx
+      state: started
+  tags: deploy
+  
+

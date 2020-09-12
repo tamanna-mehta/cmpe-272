@@ -1,0 +1,37 @@
+- block:
+  - name: Stop NGiNX
+    service:
+      name: nginx
+      state: stopped
+
+  - name: disable all access to tcp port 8080
+    firewalld:
+      port: 8080/tcp
+      zone: public
+      state: disabled
+      permanent: yes
+      immediate: yes
+
+  - firewalld:
+      service: http
+      permanent: yes
+      state: disabled
+      immediate: yes
+
+  - firewalld:
+      service: https
+      permanent: yes
+      state: disabled
+
+  - name: Remove epel-release repo
+    yum:
+      name: epel-release
+      state: absent
+      update_cache: yes
+
+  - name: Uninstall Webserver
+    yum:
+      name: nginx
+      state: absent
+      update_cache: yes
+  tags: undeploy
