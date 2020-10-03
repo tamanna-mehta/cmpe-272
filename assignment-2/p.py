@@ -1,2 +1,0 @@
-a = "tamanna"
-print (a)
