@@ -3,10 +3,12 @@
 const request = require('../lib/http');
 
 const deleteTweet = async (req, res) => {
+    // Check require params exist
     const tweetId = req.params.id || null;
     let response = {};
     if (tweetId) {
         try {
+            // Making Twitter Request
             response = await request({
                 method: 'POST',
                 uri: `https://api.twitter.com/1.1/statuses/destroy/${tweetId}.json`,
@@ -23,6 +25,7 @@ const deleteTweet = async (req, res) => {
     else {
         response.body = { 'message': 'tweetId is empty' };
     }
+    // Sending Response to Client
     res.json(response.body);
 };
 

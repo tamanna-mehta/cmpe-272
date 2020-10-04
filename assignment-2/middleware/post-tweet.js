@@ -3,10 +3,12 @@
 const request = require('../lib/http');
 
 const postTweet = async (req, res) => {
+    // Checking required argument exist
     const tweet = req.body.tweet || null;
     let response = {};
     if (tweet) {
         try {
+            // Making Twitter Request
             response = await request({
                 method: 'POST',
                 uri: `https://api.twitter.com/1.1/statuses/update.json?status=${tweet}`,
@@ -23,6 +25,7 @@ const postTweet = async (req, res) => {
     else {
         response.body = { 'message': 'Response is empty' };
     }
+    // Sending response to Client
     res.json(response.body);
 };
 
