@@ -13,6 +13,7 @@ twitter.get('/', (req, res) => {
     res.send('Hello World!')
 });
 
+// Routes for creating, getting, and deleting a tweet
 twitter.post('/update', postTweet);
 
 twitter.post('/delete/:id', deleteTweet);
