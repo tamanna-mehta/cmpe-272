@@ -1,7 +1,6 @@
+// Bhavana Shastry Start
 const express = require('express');
 const bodyParser = require('body-parser');
-const path = require('path');
-
 const config = require('./config');
 
 const app = express();
@@ -21,23 +20,13 @@ const auth = {
 app.use(bodyParser.urlencoded({
   extended: true,
 }));
-app.use(bodyParser.json());
-app.use((req, res, next) => {
-  req.auth = auth;
-  next();
-});
-
-// Bharath Gunasekaran Start
-app.get('/', function (req, res) {
-    res.sendFile(path.join(`${__dirname}/static/html/index.html`));
-})
 // Adding routes to server
 app.use('/tweet', router);
 
 // Starting server
 app.listen(port, () => {
   // eslint-disable-next-line no-console
-  console.log(`Twitter app listening at http://localhost:${port}`);
+  console.log(`Example app listening at http://localhost:${port}`);
 });
-// Bharath Gunasekaran End
 
+//Bhavana Shastry End

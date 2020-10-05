@@ -1,4 +1,4 @@
-export "CONSUMER_KEY"=""
-export "CONSUMER_SECRET"=""
-export "TOKEN"=""
-export "TOKEN_SECRET"=""
+export "CONSUMER_KEY"="GbNFc5wurm7jDS9YNnIip65QL"
+export "CONSUMER_SECRET"="WgcCjsusjGZmgqlk4TYotECEw1kvVLo32qMd8z4LshlEqnmxv4"
+export "TOKEN"="1310426482385141760-zc25qMi215h8gtgt5563W1QN8NY38a"
+export "TOKEN_SECRET"="3EJLQZad3ozAA1dF1O8F3gFvwhEaT4BSU5dkQ5udPWgPJ"
