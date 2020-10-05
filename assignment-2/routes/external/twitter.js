@@ -1,16 +1,13 @@
-'use strict';
-
 const express = require('express');
 
 const postTweet = require('../../middleware/post-tweet');
 const deleteTweet = require('../../middleware/delete-tweet');
 const getTweet = require('../../middleware/get-tweet');
 
-
 const twitter = express.Router();
 
 twitter.get('/', (req, res) => {
-    res.send('Hello World!')
+  res.send('Hello World!');
 });
 
 // Routes for creating, getting, and deleting a tweet
