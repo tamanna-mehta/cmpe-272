@@ -20,6 +20,11 @@ const auth = {
 app.use(bodyParser.urlencoded({
   extended: true,
 }));
+app.use((req, res, next) => {
+  req.auth = auth;
+  next();
+});
+
 // Adding routes to server
 app.use('/tweet', router);
 
