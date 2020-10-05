@@ -2,7 +2,7 @@
 
 const request = require('../lib/http');
 
-const verifyCredentials = async (req, res) => {
+const getAllTweets = async (req, res) => {
     // Checking if required param exist
     let response = {};
     try {
@@ -24,4 +24,4 @@ const verifyCredentials = async (req, res) => {
     res.json(response.body);
 };
 
-module.exports = verifyCredentials;
+module.exports = getAllTweets;
