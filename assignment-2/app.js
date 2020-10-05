@@ -2,6 +2,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const config = require('./config');
+const path = require('path');	
 
 const app = express();
 const router = require('./routes/external/twitter');
@@ -24,7 +25,9 @@ app.use((req, res, next) => {
   req.auth = auth;
   next();
 });
-
+app.get('/', function (req, res) {	
+  res.sendFile(path.join(`${__dirname}/static/html/index.html`));	
+})
 // Adding routes to server
 app.use('/tweet', router);
 
