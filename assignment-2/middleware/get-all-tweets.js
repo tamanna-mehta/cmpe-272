@@ -1,3 +1,4 @@
+// Tamanna Mehta
 'use strict';
 
 const request = require('../lib/http');
@@ -25,3 +26,4 @@ const getAllTweets = async (req, res) => {
 };
 
 module.exports = getAllTweets;
+// Tamanna Mehta
