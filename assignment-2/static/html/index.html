@@ -33,7 +33,7 @@
         <h1 id='username'>User Twitter Feed</h1>
     </div>
     <div class="my-3 p-3 bg-white rounded shadow-sm" id="post-status">
-        <h6 class="border-bottom border-gray pb-2 mb-0">Tweet Center</h6>
+        <h5 class="border-bottom border-gray pb-2 mb-0">Tweet Center</h6>
         <div class="mb-3">
             <textarea id='tweet' rows="4" cols="50" maxlength="50" placeholder="Enter status here..."></textarea>
         </div>
@@ -42,8 +42,9 @@
     </div>
 
     <div class="my-3 p-3 bg-white rounded shadow-sm" id="tweet-list">
-        <h6 class="border-bottom border-gray pb-2 mb-0">List of Tweets</h6>
+        <h5 class="border-bottom border-gray pb-2 mb-0">Your Tweets</h6>
         <div class="mb-3" id="tweetList"></div>
+        <button id='update' onclick="getAllTweets()">Refresh Tweets</button>
         <button id='delete' onclick="removeTweet()">Deleting 0 Tweets</button>
     </div>
 
@@ -78,7 +79,10 @@
             var h1 = document.getElementById('username');
             h1.innerText = username + ' Twitter Feed';
         }
+
+
         function getAllTweets() {
+            tweetList = [];
             $.ajax(
                 {
                     method: 'GET',
