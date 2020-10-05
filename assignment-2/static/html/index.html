@@ -123,8 +123,8 @@
                     checkbox.type = "checkbox";
                     checkbox.id = pair.id;
                     checkbox.value = pair.tweet;
-                    checkbox.addEventListener("click", function (pair) {
-                        handleCheckBox(pair);
+                    checkbox.addEventListener("click", function (event) {
+                        handleCheckBox(event.target);
                     });
 
                     list.appendChild(checkbox);
