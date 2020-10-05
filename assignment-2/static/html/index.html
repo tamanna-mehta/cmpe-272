@@ -29,7 +29,9 @@
 </head>
 
 <body class="bg-light">
-
+    <div class="my-3 p-3 bg-white rounded shadow-sm">
+        <h1 id='username'>User Twitter Feed</h1>
+    </div>
     <div class="my-3 p-3 bg-white rounded shadow-sm" id="post-status">
         <h6 class="border-bottom border-gray pb-2 mb-0">Tweet Center</h6>
         <div class="mb-3">
@@ -49,8 +51,58 @@
     <script>
         var tweetList = [];
         var deleteList = [];
+        var userId = "";
         var username = "";
 
+        $(document).ready(function () {
+            $.ajax(
+                {
+                    method: 'GET',
+                    url: '/tweet',
+                    success: function (response, status) {
+                        if (!("errors" in response)) {
+                            userId = response.id_str;
+                            username = response.name;
+                            renderUsername();
+                            getAllTweets();
+                        } else {
+                            // Show error message tweet failed
+                            console.log(response.errors);
+                        }
+                    }
+                }
+            )
+        })
+
+        function renderUsername() {
+            var h1 = document.getElementById('username');
+            h1.innerText = username + ' Twitter Feed';
+        }
+        function getAllTweets() {
+            $.ajax(
+                {
+                    method: 'GET',
+                    url: '/tweet/all/' + userId,
+                    success: function (response, status) {
+                        if (!("errors" in response)) {
+                            response.forEach(function (tweet) {
+                                tweetList.push(parseTweet(tweet));
+                            })
+                            renderList();
+                        } else {
+                            // Show error message tweet failed
+                            console.log(response.errors);
+                        }
+                    }
+                }
+            )
+        }
+        function parseTweet(tweet) {
+            return {
+                tweet: tweet.text,
+                id: tweet.id_str,
+            }
+        }
         function postTweet() {
             var textBox = document.getElementById("tweet");
             var tweet = textBox.value;
@@ -103,16 +155,6 @@
             });
         }
 
-        function hasTweet(list, tweet) {
-            var found = false;
-            list.forEach(function (item) {
-                if (!found) {
-                    found = item.id === tweet.id;
-                }
-            })
-            return found;
-        }
-
         function renderList() {
             var list = document.getElementById('tweetList');
             list.innerHTML = "";
@@ -145,7 +187,6 @@
         }
 
         function removeTweet() {
-            // Loop through delete list
             deleteList.forEach(function (tweet) {
                 $.ajax(
                     {
@@ -167,10 +208,8 @@
                     }
                 )
             })
-            // Call delete endpoint with id
-            // Delete tweets from tweet list
-            // Empty delete list
         }
+
     </script>
 </body>
 
