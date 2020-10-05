@@ -1,5 +1,5 @@
 'use strict';
-// Bharath Gunasekaran Start
+// Bhavana Shastry Start
 
 const convict = require('convict');
 
@@ -33,5 +33,5 @@ const config = convict({
 config.validate({ allowed: 'strict' });
 
 module.exports = config;
-// Bharath Gunasekaran End
+// Bhavana Shastry End
 
