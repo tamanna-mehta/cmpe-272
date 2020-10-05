@@ -1,5 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const path = require('path');
+
 const config = require('./config');
 
 const app = express();
@@ -25,6 +27,10 @@ app.use((req, res, next) => {
   next();
 });
 
+app.get('/', function (req, res) {
+    res.sendFile(path.join(`${__dirname}/static/html/index.html`));
+})
+//app.use(express.static('static'));
 // Adding routes to server
 app.use('/tweet', router);
 
