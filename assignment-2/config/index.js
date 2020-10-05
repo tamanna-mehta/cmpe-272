@@ -1,3 +1,6 @@
+'use strict';
+// Bharath Gunasekaran Start
+
 const convict = require('convict');
 
 const config = convict({
@@ -30,3 +33,5 @@ const config = convict({
 config.validate({ allowed: 'strict' });
 
 module.exports = config;
+// Bharath Gunasekaran End
+

@@ -27,15 +27,17 @@ app.use((req, res, next) => {
   next();
 });
 
+// Bharath Gunasekaran Start
 app.get('/', function (req, res) {
     res.sendFile(path.join(`${__dirname}/static/html/index.html`));
 })
-//app.use(express.static('static'));
 // Adding routes to server
 app.use('/tweet', router);
 
 // Starting server
 app.listen(port, () => {
   // eslint-disable-next-line no-console
-  console.log(`Example app listening at http://localhost:${port}`);
+  console.log(`Twitter app listening at http://localhost:${port}`);
 });
+// Bharath Gunasekaran End
+

@@ -1,3 +1,5 @@
+
+
 const express = require('express');
 
 const postTweet = require('../../middleware/post-tweet');
@@ -14,9 +16,12 @@ twitter.post('/update', postTweet);
 twitter.post('/delete/:id', deleteTweet);
 
 twitter.get('/:id', getTweet);
+// Bharath Gunasekaran Start
 
 twitter.get('/', verifyCredentials);
 
 twitter.get('/all/:id', getAllTweets);
 
+
 module.exports = twitter;
+// Bharath Gunasekaran End
